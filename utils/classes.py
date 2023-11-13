@@ -1,4 +1,3 @@
-import os
 import json
 import requests
 
@@ -104,23 +103,23 @@ class SuperJob(Api_Vacancy):
 
 class JSONSaver:
 
-    def load_file(cls, file='Vacancies.json'):
+    def load_file(file='Vacancies.json'):
         with open(file, 'r', encoding='utf-8') as f:
             vacancies = json.load(f)
         return vacancies
 
-    def add_vacancy(cls, text: list):
+    def add_vacancy(text: list):
         vacancies = JSONSaver.load_file()
         with open('Vacancies.json', 'w', encoding='utf-8') as file:
             for vacancy in text:
                 vacancies.append(vacancy)
             json.dump(vacancies, file, indent=2, ensure_ascii=False)
 
-    def clear_file(cls):
+    def clear_file():
         with open('Vacancies.json', 'w', encoding='utf-8') as file:
             file.write('[]')
 
-    def find_town(cls, town):
+    def find_town(town):
         vacancies = JSONSaver.load_file()
         filtered_lst = []
         for vacancy in vacancies:
@@ -129,7 +128,7 @@ class JSONSaver:
         with open('Vacancies.json', 'w', encoding='utf-8') as file:
             json.dump(filtered_lst, file, indent=2, ensure_ascii=False)
 
-    def find_salary(cls, salary):
+    def find_salary(salary):
         vacancies = JSONSaver.load_file()
         filtered_lst = []
         for vacancy in vacancies:
